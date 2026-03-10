@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriela Ferreira — Estrategista de Marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #3a3ab4;
+    --blue-light: #5a5acc;
+    --blue-pale: #e8e8f8;
+    --black: #0d0d0d;
+    --white: #fafaf8;
+    --off-white: #f2f1ed;
+    --gray: #9a9a9a;
+    --gray-light: #e8e7e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem;
+  }
+  .hero-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--blue); }
+  .hero-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #555;
+    max-width: 460px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--blue);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 0.3rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--blue);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+    width: fit-content;
+  }
+  .hero-cta:hover { background: var(--blue-light); transform: translateY(-2px); }
+  .hero-cta svg { transition: transform 0.3s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  .hero-right {
+    background: var(--off-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 4rem 3rem 0;
+    overflow: hidden;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.3s forwards;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: 3rem; right: 3rem;
+    width: 120px; height: 120px;
+    border: 1px solid var(--blue);
+    opacity: 0.2;
+    border-radius: 50%;
+  }
+  .hero-word {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 7vw, 8rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--blue);
+    opacity: 0.07;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+  .hero-img-placeholder {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #d4d4ee 0%, #b8b8e0 100%);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-img-placeholder span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--blue);
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1.25rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--blue); }
+
+  /* ABOUT */
+  #about { background: var(--off-white); color: var(--black); }
+  #about .section-label { color: var(--blue); }
+  #about .section-title em { color: var(--blue); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-text {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  .about-text strong { color: var(--black); font-weight: 500; }
+  .skills-list { display: flex; flex-direction: column; gap: 0; }
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .skill-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--blue);
+    width: 24px;
+    flex-shrink: 0;
+  }
+  .skill-name { font-size: 0.88rem; font-weight: 300; color: #444; letter-spacing: 0.03em; }
+  .skill-dot { margin-left: auto; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+
+  /* METHODOLOGY */
+  #methodology { background: var(--off-white); }
+  .methodology-inner { max-width: 1200px; margin: 0 auto; }
+  .methodology-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-bottom: 5rem;
+    align-items: start;
+  }
+  .methodology-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #555;
+    padding-top: 0.5rem;
+  }
+  .methodology-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .step-card {
+    background: var(--white);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .step-card:hover { background: var(--blue-pale); }
+  .step-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -0.5rem; right: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--blue);
+    opacity: 0.06;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    color: var(--black);
+  }
+  .step-desc { font-size: 0.85rem; font-weight: 300; line-height: 1.7; color: #666; }
+
+  .timeline-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 5rem;
+    border: 1px solid var(--gray-light);
+  }
+  .timeline-item {
+    padding: 2rem;
+    border-right: 1px solid var(--gray-light);
+  }
+  .timeline-item:last-child { border-right: none; }
+  .timeline-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--blue);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-desc { font-size: 0.82rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
+
+  /* CASE */
+  #case { background: var(--white); padding: 7rem 0; }
+  #case .section-label, #case .section-title { padding: 0 4rem; }
+  .case-intro { max-width: 680px; padding: 0 4rem; margin-bottom: 5rem; }
+  .case-intro p { font-size: 1rem; font-weight: 300; line-height: 1.85; color: #555; }
+
+  .case-hero-strip {
+    background: #1a1a3e;
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .case-client-sub {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #7070d0;
+    margin-bottom: 1rem;
+  }
+  .case-client-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(58,58,180,0.4);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #aaaadd;
+  }
+  .case-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--blue);
+    margin-bottom: 1.5rem;
+  }
+  .case-context {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+  }
+
+  .case-metrics {
+    background: var(--blue);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .metric-item {
+    padding: 2rem 2.5rem;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    text-align: center;
+  }
+  .metric-item:last-child { border-right: none; }
+  .metric-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 300;
+    color: white;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .metric-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .metric-note {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  .case-body {
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    background: var(--off-white);
+  }
+  .case-col-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: var(--black);
+  }
+  .case-col-title em { font-style: italic; color: var(--blue); }
+  .case-col-text {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 1.25rem;
+  }
+  .deliverables-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+  .deliverables-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.86rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.5;
+  }
+  .deliverables-list li::before { content: '—'; color: var(--blue); flex-shrink: 0; font-weight: 400; }
+
+  .promise-block {
+    padding: 1.5rem;
+    background: var(--white);
+    margin: 1.25rem 0;
+    border-left: 3px solid var(--blue);
+  }
+  .promise-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--black);
+    line-height: 1.7;
+  }
+
+  .case-results { background: var(--white); padding: 5rem 4rem; }
+  .results-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    color: var(--black);
+  }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+  .result-card { padding: 2.5rem; background: var(--off-white); }
+  .result-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .result-desc { font-size: 0.84rem; font-weight: 300; color: #666; line-height: 1.65; max-width: 320px; }
+  .result-context {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 0.75rem;
+  }
+
+  /* CTA */
+  #contact { background: var(--black); padding: 8rem 4rem; text-align: center; }
+  #contact .section-label { color: #7070d0; }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    padding: 1.1rem 3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--blue);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .contact-btn:hover { background: var(--blue); transform: translateY(-2px); }
+  .contact-handle { margin-top: 3rem; font-size: 0.75rem; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+
+
+  /* FOTO PLACEHOLDER */
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--gray-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border: 2px dashed #ccc;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+  .photo-placeholder-text {
+    font-size: 0.75rem;
+    color: #aaa;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .photo-placeholder svg { color: #ccc; position: relative; z-index: 1; }
+
+  /* CONTACT BUTTONS */
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .contact-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--blue);
+    color: white;
+    text-decoration: none;
+    padding: 1.1rem 3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s;
+    width: fit-content;
+  }
+  .contact-btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
+  .contact-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: border-color 0.3s, color 0.3s;
+    width: fit-content;
+  }
+  .contact-btn-secondary:hover { border-color: var(--blue); color: rgba(255,255,255,0.9); }
+  .contact-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080808;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #111;
+  }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #888; letter-spacing: 0.05em; }
+  .footer-brand span { color: var(--blue); }
+  .footer-copy { font-size: 0.7rem; font-weight: 300; color: #555; letter-spacing: 0.08em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 2rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 8rem 2rem 4rem; }
+    section { padding: 5rem 2rem; }
+    .about-grid, .methodology-intro, .case-hero-strip, .case-body { grid-template-columns: 1fr; gap: 3rem; }
+    .case-metrics { grid-template-columns: 1fr 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+    .methodology-steps { grid-template-columns: 1fr; }
+    .timeline-strip { grid-template-columns: 1fr 1fr; }
+    #case .section-label, #case .section-title, .case-intro { padding: 0 2rem; }
+    .case-hero-strip, .case-metrics, .case-body, .case-results { padding: 4rem 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    #case-juliana .case-hero-strip { grid-template-columns: 1fr !important; }
+    #case-juliana .case-body { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Gabriela <span>Ferreira</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#methodology">Metodologia</a></li>
+    <li><a href="#case">Case</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-label">Estrategista de marca</p>
+    <h1 class="hero-title">
+      Marcas que<br>
+      <em>transmutam</em><br>
+      em resultados.
+    </h1>
+    <p class="hero-desc">
+      Estratégia, posicionamento e sistemas de conteúdo que transformam marcas confusas em marcas com direção — fortes, desejadas e lucrativas.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">17+</div>
+        <div class="stat-label">Estratégias completas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Projetos em execução</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2,5</div>
+        <div class="stat-label">Anos no mercado</div>
+      </div>
+    </div>
+    <a href="#contact" class="hero-cta">
+      Vamos conversar
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-word">transmuta</div>
+    <div style="height:420px; overflow:hidden; position:relative;">
+      <img src="foto-hero.png" alt="Gabriela Ferreira" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <p class="section-label">Quem sou eu</p>
+      <h2 class="section-title">Enxergo marcas não só pela lógica,<br>mas pela <em>alma.</em></h2>
+      <p class="about-text">
+        Sou Gabriela Ferreira, estrategista de marca especializada em <strong>posicionamento e arquitetura de sistemas de conteúdo</strong>. Minha expertise combina análise profunda, organização, liderança e sensibilidade humana — um conjunto que permite estruturar marcas de forma clara, intencional e orientada a resultados.
+      </p>
+      <p class="about-text">
+        Formada como social media estrategista pela Like Marketing, estrategista digital pela metodologia Midas, com formação contínua em branding, comportamento humano e psicologia aplicada ao consumo. Graduanda em Marketing.
+      </p>
+      <p class="about-text">
+        Meu perfil <strong>ENFJ</strong> — liderança, inteligência social, empatia estratégica e forte senso de propósito — me permite ir além das entregas padrão. Aqui, nada é aleatório. Cada decisão nasce de método, narrativa e precisão.
+      </p>
+    </div>
+    <div class="about-right reveal">
+      <div style="max-width:340px; margin-bottom:2.5rem; overflow:hidden;">
+        <img src="foto-sobre.png" alt="Gabriela Ferreira" style="width:100%; display:block; object-fit:cover;">
+      </div>
+      <div class="skills-list">
+        <div class="skill-item"><span class="skill-number">01</span><span class="skill-name">Estratégia de posicionamento de marca</span><span class="skill-dot"></span></div>
+        <div class="skill-item"><span class="skill-number">02</span><span class="skill-name">Arquitetura de sistemas de conteúdo</span><span class="skill-dot"></span></div>
+        <div class="skill-item"><span class="skill-number">03</span><span class="skill-name">Construção de DNA e narrativa de marca</span><span class="skill-dot"></span></div>
+        <div class="skill-item"><span class="skill-number">04</span><span class="skill-name">Gestão e execução de conteúdo</span><span class="skill-dot"></span></div>
+        <div class="skill-item"><span class="skill-number">05</span><span class="skill-name">Análise de dados e otimização contínua</span><span class="skill-dot"></span></div>
+        <div class="skill-item"><span class="skill-number">06</span><span class="skill-name">Coordenação de equipes e projetos</span><span class="skill-dot"></span></div>
+        <div class="skill-item"><span class="skill-number">07</span><span class="skill-name">Mapeamento de personas e jornada de compra</span><span class="skill-dot"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="methodology">
+  <div class="methodology-inner">
+    <div class="methodology-intro reveal">
+      <div>
+        <p class="section-label">Como trabalho</p>
+        <h2 class="section-title">Estratégia profunda.<br><em>Execução real.</em></h2>
+      </div>
+      <p class="methodology-desc">
+        Minha metodologia une diagnóstico profundo, construção estratégica e implementação real. Primeiro entendo a essência da marca — história, objetivos, mercado e posicionamento atual. Depois estruturo um sistema completo. Por fim, transformo estratégia em resultados concretos.<br><br>
+        Nada é aleatório, nada é baseado em "achismo" ou trends virais. Cada entrega é orientada por método, clareza e precisão estratégica.
+      </p>
+    </div>
+
+    <div class="methodology-steps reveal">
+      <div class="step-card" data-num="01">
+        <h3 class="step-title">Diagnóstico profundo</h3>
+        <p class="step-desc">Análise minuciosa da marca, presença digital, concorrência e benchmarking. Aqui nascem as respostas sobre quem você é, quem quer atingir e o que precisa mudar.</p>
+      </div>
+      <div class="step-card" data-num="02">
+        <h3 class="step-title">Construção estratégica</h3>
+        <p class="step-desc">DNA de conteúdo, personas, jornada de compra, linhas editoriais, funil de conteúdo e diretrizes visuais. Um sistema completo e coerente.</p>
+      </div>
+      <div class="step-card" data-num="03">
+        <h3 class="step-title">Execução com método</h3>
+        <p class="step-desc">Conteúdo que nasce da estratégia — não de improviso. Cada peça conversa com os objetivos do projeto e com a etapa da jornada do cliente.</p>
+      </div>
+      <div class="step-card" data-num="04">
+        <h3 class="step-title">Análise e otimização</h3>
+        <p class="step-desc">Relatórios de desempenho, diagnóstico estratégico, identificação de padrões e recomendações para o próximo ciclo. Crescimento contínuo, baseado em dados.</p>
+      </div>
+    </div>
+
+    <div class="timeline-strip reveal">
+      <div class="timeline-item">
+        <div class="timeline-num">1</div>
+        <div class="timeline-title">Briefing Inicial</div>
+        <div class="timeline-desc">Coleta de informações essenciais sobre a marca, objetivos e contexto.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">2</div>
+        <div class="timeline-title">Kick Off</div>
+        <div class="timeline-desc">Reunião inicial de alinhamento e início do mergulho estratégico.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">3</div>
+        <div class="timeline-title">Construção</div>
+        <div class="timeline-desc">60 dias de desenvolvimento com encontros colaborativos e refinamentos.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">4</div>
+        <div class="timeline-title">Entrega Final</div>
+        <div class="timeline-desc">Apresentação do estudo estratégico completo e início da execução.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="case">
+  <p class="section-label reveal">Case de resultado</p>
+  <h2 class="section-title reveal">Da invisibilidade à <em>autoridade.</em></h2>
+  <div class="case-intro reveal">
+    <p>Um dos cases mais completos que já conduzi — estratégia, execução e gestão de conteúdo durante 6 meses consecutivos, com crescimento expressivo e consistente, 100% orgânico.</p>
+  </div>
+
+  <div class="case-hero-strip reveal">
+    <div>
+      <p class="case-client-sub">Psicologia · Instagram · 6 meses</p>
+      <h3 class="case-client-name">Psic. Sílvia<br>Salvan</h3>
+      <div class="case-tags">
+        <span class="tag">Estratégia</span>
+        <span class="tag">Execução</span>
+        <span class="tag">Gestão</span>
+        <span class="tag">100% orgânico</span>
+      </div>
+    </div>
+    <div>
+      <blockquote class="case-quote">
+        "Parece que estou falando no deserto. Meu digital não representa a potência da minha experiência."
+      </blockquote>
+      <p class="case-context">
+        Psicóloga com 31 anos de experiência, Sílvia chegou sem posicionamento claro e sem presença digital que refletisse a profundidade do seu trabalho. O desafio era transformar conhecimento profundo em comunicação acessível, coerente e estratégica — e depois executar isso, mês a mês, com método.
+      </p>
+    </div>
+  </div>
+
+  <div class="case-metrics reveal">
+    <div class="metric-item">
+      <div class="metric-number">+8.352%</div>
+      <div class="metric-label">Crescimento de alcance</div>
+      <div class="metric-note">1° trimestre de estratégia</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">5,61%</div>
+      <div class="metric-label">Taxa de engajamento</div>
+      <div class="metric-note">referência de mercado: 2–3%</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">+2.282%</div>
+      <div class="metric-label">Crescimento de visualizações</div>
+      <div class="metric-note">set/25 – fev/26 vs. período anterior</div>
+    </div>
+  </div>
+
+  <div class="case-body reveal">
+    <div>
+      <h3 class="case-col-title">O <em>diagnóstico</em> e a estratégia</h3>
+      <p class="case-col-text">
+        Silvia tinha profundidade, mas faltava direção estratégica. Sua comunicação não representava a potência da sua experiência e não criava linguagem para as dores emocionais do público. Resultado: baixíssima visibilidade e nenhum sistema para converter audiência em clientes.
+      </p>
+      <p class="case-col-text">
+        Com base em diagnóstico profundo e análise minuciosa do briefing, foi estruturada uma estratégia completa usando a Metodologia 10P:
+      </p>
+      <ul class="deliverables-list">
+        <li>Diagnóstico completo: presença digital, concorrência e benchmarking</li>
+        <li>Posicionamento: psicologia profunda, humanizada e clara</li>
+        <li>Personas e mapeamento de dores emocionais do público</li>
+        <li>Jornada de compra da baixa consciência ao desejo terapêutico</li>
+        <li>DNA de conteúdo: clareza + acolhimento + firmeza</li>
+        <li>Linhas editoriais estratégicas e funil de conteúdo</li>
+        <li>Diretrizes de linguagem visual coerentes com a identidade</li>
+        <li>Métricas e sistema de acompanhamento contínuo</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="case-col-title">A <em>execução</em> e os resultados</h3>
+      <p class="case-col-text">
+        Após a entrega da estratégia, Sílvia me contratou para liderar a execução e gestão do conteúdo. Durante 6 meses consecutivos, produzi conteúdo estratégico, analisei dados mensalmente e ajustei a linha editorial conforme os padrões de engajamento identificados.
+      </p>
+      <p class="case-col-text">A promessa de marca que conduziu toda a comunicação:</p>
+      <div class="promise-block">
+        <p>Dor → Acolhimento → Compreensão → Autonomia Emocional → Transformação</p>
+      </div>
+      <p class="case-col-text">
+        Em fevereiro de 2026 (mês 6), o perfil registrou <strong>taxa de engajamento de 5,61%</strong> — quase o dobro da referência saudável de mercado — e taxa de conversão por visita de <strong>6,66%</strong>, mais que o dobro da referência do setor. Tudo sem tráfego pago.
+      </p>
+    </div>
+  </div>
+
+  <div class="case-results reveal">
+    <h3 class="results-title">Números após 6 meses de estratégia ativa</h3>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-stat">+2.282%</div>
+        <p class="result-desc">Crescimento de visualizações — de 8.821 para 210.190, em comparação ao período anterior ao início da estratégia.</p>
+        <p class="result-context">Visualizações totais · set/25 – fev/26</p>
+      </div>
+      <div class="result-card">
+        <div class="result-stat">5,61%</div>
+        <p class="result-desc">Taxa de engajamento em fevereiro de 2026. A referência saudável de mercado é de 2–3%. Quase o dobro, 100% orgânico.</p>
+        <p class="result-context">Taxa de engajamento · fev/26</p>
+      </div>
+      <div class="result-card">
+        <div class="result-stat">+368%</div>
+        <p class="result-desc">Crescimento em comentários no período — de 38 para 178, indicando audiência engajada e qualificada.</p>
+        <p class="result-context">Comentários totais · set/25 – fev/26</p>
+      </div>
+      <div class="result-card">
+        <div class="result-stat">6,66%</div>
+        <p class="result-desc">Taxa de conversão por visita ao perfil. A referência do setor é ~3%. Funil de topo bem estruturado gerando interesse real.</p>
+        <p class="result-context">Conversão/visita · fev/26</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CASE JULIANA ── -->
+<section id="case-juliana" style="background: var(--off-white); padding: 100px 5vw;">
+
+  <p class="section-label reveal">Case de posicionamento estratégico</p>
+  <h2 class="section-title reveal">De psicóloga experiente<br>a <em>marca com sistema.</em></h2>
+  <div class="case-intro reveal">
+    <p>Algumas marcas não precisam ser construídas do zero — precisam ser reveladas. Este case é sobre decifrar 15 anos de expertise clínica e transformar isso em um posicionamento preciso, com método e linguagem próprios.</p>
+  </div>
+
+  <div class="case-hero-strip reveal" style="background: var(--white);">
+    <div>
+      <p class="case-client-sub">Psicologia Clínica · TCC · Estratégia de Posicionamento</p>
+      <h3 class="case-client-name" style="color: var(--black);">Psic. Juliana<br>Rage Fialho</h3>
+      <div class="case-tags">
+        <span class="tag" style="border-color: var(--blue); color: var(--blue);">Diagnóstico</span>
+        <span class="tag" style="border-color: var(--blue); color: var(--blue);">Posicionamento</span>
+        <span class="tag" style="border-color: var(--blue); color: var(--blue);">Branding</span>
+        <span class="tag" style="border-color: var(--blue); color: var(--blue);">Estratégia de Conteúdo</span>
+      </div>
+    </div>
+    <div>
+      <blockquote class="case-quote">
+        "Não quero ser só mais uma psicóloga. Quero ter autoridade — mas também leveza. Preciso de direção."
+      </blockquote>
+      <p class="case-context">
+        Psicóloga com 15 anos de experiência clínica em TCC e influenciadora com 126 mil seguidores, Juliana tinha credenciais, presença e carisma — mas sem sistema. Dois perfis desconectados, comunicação profissional sem posicionamento, e nenhuma estrutura para transformar audiência em pacientes.
+      </p>
+    </div>
+  </div>
+
+  <!-- O DESAFIO -->
+  <div class="case-body reveal" style="margin-top: 3rem; background: var(--white);">
+    <div>
+      <h3 class="case-col-title">O <em>diagnóstico</em></h3>
+      <p class="case-col-text">
+        Juliana chegou com um paradoxo: tinha mais autoridade real do que qualquer concorrente local, mas essa autoridade era invisível no digital. Sua comunicação como psicóloga estava desconectada da sua metodologia clínica — e o Instagram, sem estratégia, não convertia.
+      </p>
+      <p class="case-col-text">
+        A análise do mercado local confirmou: nenhum profissional da região investia em estratégia digital estruturada. O campo estava livre. O problema era outro — Juliana precisava saber <em>o que dizer, para quem, e com qual lógica</em>.
+      </p>
+
+      <div style="margin-top: 1.8rem; padding: 1.5rem; border: 1px solid rgba(58,58,180,0.2); background: var(--blue-pale);">
+        <p style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; font-weight: 500;">Cenário encontrado</p>
+        <ul class="deliverables-list">
+          <li>Dois perfis no Instagram sem integração ou estratégia</li>
+          <li>Comunicação profissional sem diferencial clínico comunicado</li>
+          <li>Zero estratégia de conteúdo para captação de pacientes</li>
+          <li>Site no Google Sites sem estrutura de SEO ou conversão</li>
+          <li>Concorrentes locais sem estratégia digital — campo aberto</li>
+          <li>15 anos de expertise em TCC não comunicados como diferencial</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="case-col-title">A <em>estratégia construída</em></h3>
+      <p class="case-col-text">
+        Após diagnóstico completo, análise de concorrência em três níveis e mapeamento de personas, foi construído o sistema de posicionamento da marca — do arquétipo ao DNA do conteúdo.
+      </p>
+
+      <div style="margin-bottom: 1rem;">
+        <p style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.7rem; font-weight: 500;">Posicionamento definido</p>
+        <div style="border-left: 2px solid var(--blue); padding-left: 1.2rem;">
+          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; font-style: italic; color: var(--black); line-height: 1.4; margin-bottom: 0.4rem;">Terapia com clareza,<br>segurança e condução.</p>
+          <p style="font-size: 0.8rem; color: var(--gray);">Slogan · Tagline · Mantra interno · Manifesto completo</p>
+        </div>
+      </div>
+
+      <ul class="deliverables-list" style="margin-top: 1.2rem;">
+        <li>Arquétipo de marca: <strong>Realista</strong> — condução sem promessas, pé no chão</li>
+        <li>Manifesto, slogan, tagline e mantra interno estruturados</li>
+        <li>4 linhas editoriais como <strong>escada de raciocínio</strong> — não temas soltos</li>
+        <li>Personas Mariana, Lucas e Renata com jornada de compra</li>
+        <li>Pesquisa de palavras-chave com volume de busca mapeado</li>
+        <li>Estratégia de Instagram: 3 reels/semana + diretrizes visuais</li>
+        <li>Estratégia offline: parcerias com psiquiatras e networking local</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BLOCO CENTRAL — O DIFERENCIAL DO CASE -->
+  <div class="reveal" style="margin-top: 3.5rem; border: 1px solid var(--gray-light); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--gray-light);">
+    <div style="background: var(--off-white); padding: 2rem 1.8rem;">
+      <p style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; font-weight: 500;">O arquétipo</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--black); font-weight: 500; margin-bottom: 0.5rem;">Realista</p>
+      <p style="font-size: 0.85rem; color: #555; line-height: 1.6;">Aceita a realidade como ela é. Não promete atalhos emocionais. Constrói segurança por condução — e isso se traduz em cada conteúdo, cada sessão.</p>
+    </div>
+    <div style="background: var(--blue); padding: 2rem 1.8rem;">
+      <p style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.8rem; font-weight: 500;">O manifesto</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: white; font-style: italic; line-height: 1.65; font-weight: 300;">"A vida não é simples, nem a dor. Eu não trabalho com atalhos emocionais. Trabalho com clareza, segurança e condução. Segurança emocional não se promete — se constrói."</p>
+    </div>
+    <div style="background: var(--off-white); padding: 2rem 1.8rem;">
+      <p style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; font-weight: 500;">O território</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--black); font-weight: 500; margin-bottom: 0.5rem;">Clareza psicológica</p>
+      <p style="font-size: 0.85rem; color: #555; line-height: 1.6;">Não compete por atenção — compete por confiança. O conteúdo não fala sobre sintomas. Explica como a mente funciona. Isso atrai o paciente certo.</p>
+    </div>
+  </div>
+
+  <!-- AS 4 LINHAS EDITORIAIS -->
+  <div class="reveal" style="margin-top: 3.5rem;">
+    <p style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; font-weight: 500;">Sistema editorial — as 4 linhas como escada de raciocínio</p>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gray-light); border: 1px solid var(--gray-light);">
+      <div style="background: var(--white); padding: 1.8rem 1.5rem;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--blue); opacity: 0.2; line-height: 1; margin-bottom: 0.8rem;">01</p>
+        <p style="font-size: 0.78rem; color: var(--black); font-weight: 500; margin-bottom: 0.5rem;">Como a mente funciona</p>
+        <p style="font-size: 0.8rem; color: #666; line-height: 1.55;">Topo de funil. A pessoa entende que o problema não é ela — é como a mente dela está funcionando.</p>
+      </div>
+      <div style="background: var(--white); padding: 1.8rem 1.5rem;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--blue); opacity: 0.2; line-height: 1; margin-bottom: 0.8rem;">02</p>
+        <p style="font-size: 0.78rem; color: var(--black); font-weight: 500; margin-bottom: 0.5rem;">Pensar, sentir e agir</p>
+        <p style="font-size: 0.8rem; color: #666; line-height: 1.55;">Reconhecimento. A cadeia pensamento → emoção → comportamento explica por que os padrões se repetem.</p>
+      </div>
+      <div style="background: var(--white); padding: 1.8rem 1.5rem;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--blue); opacity: 0.2; line-height: 1; margin-bottom: 0.8rem;">03</p>
+        <p style="font-size: 0.78rem; color: var(--black); font-weight: 500; margin-bottom: 0.5rem;">Respostas funcionais</p>
+        <p style="font-size: 0.8rem; color: #666; line-height: 1.55;">Consideração. Entender que mudar não é querer — é aprender a responder diferente, dentro de um processo.</p>
+      </div>
+      <div style="background: var(--blue-pale); padding: 1.8rem 1.5rem; border-left: 2px solid var(--blue);">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--blue); opacity: 0.4; line-height: 1; margin-bottom: 0.8rem;">04</p>
+        <p style="font-size: 0.78rem; color: var(--blue); font-weight: 500; margin-bottom: 0.5rem;">O processo terapêutico</p>
+        <p style="font-size: 0.8rem; color: #555; line-height: 1.55;">Conversão. A pessoa já entende que precisa de condução. Essa linha mostra como a TCC com Juliana entrega isso.</p>
+      </div>
+    </div>
+    <p style="font-size: 0.78rem; color: var(--gray); margin-top: 0.8rem; font-style: italic;">Cada linha é uma etapa da maturação cognitiva da audiência — não categorias isoladas, mas um sistema com lógica de funil.</p>
+  </div>
+
+  <!-- STATUS E PRÓXIMA FASE -->
+  <div class="reveal" style="margin-top: 3.5rem; padding: 2rem; border: 1px solid var(--gray-light); display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; background: var(--white);">
+    <div style="flex: 1; min-width: 220px;">
+      <p style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); font-weight: 500; margin-bottom: 0.6rem;">Status do projeto</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--black); font-weight: 400;">Estratégia entregue.<br>Execução iniciando.</p>
+    </div>
+    <div style="flex: 2; min-width: 280px;">
+      <p style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); font-weight: 500; margin-bottom: 0.6rem;">O que vem a seguir</p>
+      <p style="font-size: 0.88rem; color: #555; line-height: 1.65;">Com todo o sistema estratégico construído — posicionamento, branding, personas, linhas editoriais e palavras-chave —, a execução começa com base sólida. Os resultados serão acompanhados e documentados ao longo dos próximos meses.</p>
+    </div>
+  </div>
+
+</section>
+
+<section id="contact">
+  <p class="section-label">Próximo passo</p>
+  <h2 class="contact-title">Sua marca pode ser a próxima a ser transmutada.</h2>
+  <p class="contact-desc">
+    Se você quer sair da invisibilidade, ter clareza de posicionamento e um sistema que atrai os clientes certos — vamos conversar.
+  </p>
+  <div class="contact-links">
+    <a href="https://wa.me/5534999181548" target="_blank" class="contact-btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar no WhatsApp
+    </a>
+    <div class="contact-row">
+      <a href="https://instagram.com/gabrielaferreira.estrategista" target="_blank" class="contact-btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @gabrielaferreira.estrategista
+      </a>
+      <a href="mailto:gabriela.estrategistademarcas@gmail.com" class="contact-btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        SEU@EMAIL.COM
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Gabriela <span>Ferreira</span> · Estrategista de Marca</div>
+  <div class="footer-copy">© 2026 · Todos os direitos reservados</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
